@@ -37,16 +37,15 @@ export const StyledButton = styled.button<ButtonStyledProps>`
   &.active::after {
     position: absolute;
     content: '';
-    width: 300px;
-    height: 300px;
+    height: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation: ripple 0.4s;
-    background-color: ${({ color, variant }) => {
-      if (variant === 'contained') return getColorType(color).light;
-      return getColorType(color).hover;
-    }};
+    background-color: ${({ color, variant }) =>
+      variant === 'contained'
+        ? getColorType(color).light
+        : getColorType(color).hover};
   }
 
   // disabled

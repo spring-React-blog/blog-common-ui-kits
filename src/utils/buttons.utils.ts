@@ -1,5 +1,5 @@
 import { getColorType } from './common.utils';
-import { Size, Color, Variant } from '../types/common';
+import { Size, Color, Variant } from '../types/common.types';
 
 export const getButtonSizeStyle = (size?: Size) => {
   if (size === 'small') {

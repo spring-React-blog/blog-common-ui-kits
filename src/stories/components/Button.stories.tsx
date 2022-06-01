@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story } from '@storybook/react/types-6-0';
-import { ButtonProps } from 'src/types/button.types';
-import Button from 'src/components/Button/Button';
+import { ButtonProps } from '../../types/button.types';
+import Button from '../../components/Button';
 
 export default {
   title: 'components/Button',
@@ -72,7 +72,7 @@ Primary.args = {
   fullWidth: false,
   size: 'medium',
   shape: 'rect',
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => console.log(e.target),
 };
 
 Secondary.args = {
@@ -81,7 +81,7 @@ Secondary.args = {
   color: 'secondary',
   size: 'medium',
   shape: 'rect',
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => console.log(e.target),
 };
 
 Success.args = {
@@ -90,7 +90,7 @@ Success.args = {
   size: 'medium',
   color: 'success',
   shape: 'rect',
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => console.log(e.target),
 };
 
 Error.args = {
@@ -99,7 +99,7 @@ Error.args = {
   size: 'medium',
   color: 'error',
   shape: 'rect',
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => console.log(e.target),
 };
 
 Modern.args = {
@@ -108,5 +108,5 @@ Modern.args = {
   size: 'medium',
   color: 'modern',
   shape: 'rect',
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => console.log(e.target),
 };

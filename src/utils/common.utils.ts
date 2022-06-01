@@ -1,5 +1,5 @@
 import theme from '../shared/theme';
-import { Color } from '../types/common';
+import { Color } from '../types/common.types';
 
 export const resetStyle = (type: string) => {
   switch (type) {
