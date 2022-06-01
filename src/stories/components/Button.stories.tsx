@@ -1,41 +1,112 @@
 import React from 'react';
 import { Story } from '@storybook/react/types-6-0';
+import { ButtonProps } from 'src/types/button.types';
 import Button from 'src/components/Button/Button';
 
 export default {
   title: 'components/Button',
   argTypes: {
-    variant: {
-      options: ['primary', 'secondary'],
-      control: { type: 'check' },
+    color: {
+      options: ['primary', 'secondary', 'success', 'error', 'modern'],
+      control: { type: 'select' },
     },
     size: {
-      options: ['medium', 'large'],
+      options: ['small', 'medium', 'large'],
+      control: { type: 'select' },
+    },
+    shape: {
+      options: ['rect', 'round'],
+      control: { type: 'select' },
+    },
+    variant: {
+      options: ['contained', 'outlined'],
       control: { type: 'select' },
     },
   },
 };
 
-interface Props {
-  size: 'medium' | 'large';
-  select: any[];
-}
-
-const Template: Story<Props> = ({ size }: Props) => {
+const Template: Story<ButtonProps> = ({
+  children,
+  fullWidth,
+  size,
+  color,
+  shape,
+  disabled,
+  onClick,
+}: ButtonProps) => {
   return (
-    <div>
-      <Button size={size}>안녕</Button>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <Button
+        disabled={disabled}
+        color={color}
+        shape={shape}
+        size={size}
+        variant={'contained'}
+        fullWidth={fullWidth}
+        onClick={onClick}>
+        {children}
+      </Button>
+
+      <Button
+        disabled={disabled}
+        color={color}
+        shape={shape}
+        size={size}
+        variant={'outlined'}
+        fullWidth={fullWidth}
+        onClick={onClick}>
+        {children}
+      </Button>
     </div>
   );
 };
 
-export const Default = Template.bind({});
-export const LARGE = Template.bind({});
+export const Primary = Template.bind({});
+export const Secondary = Template.bind({});
+export const Success = Template.bind({});
+export const Error = Template.bind({});
+export const Modern = Template.bind({});
 
-Default.args = {
+Primary.args = {
+  children: 'Button Primary',
+  fullWidth: false,
   size: 'medium',
+  shape: 'rect',
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
 };
 
-LARGE.args = {
-  size: 'large',
+Secondary.args = {
+  children: 'Button Secondat',
+  fullWidth: false,
+  color: 'secondary',
+  size: 'medium',
+  shape: 'rect',
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+};
+
+Success.args = {
+  children: 'Button Success',
+  fullWidth: false,
+  size: 'medium',
+  color: 'success',
+  shape: 'rect',
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+};
+
+Error.args = {
+  children: 'Button Error',
+  fullWidth: false,
+  size: 'medium',
+  color: 'error',
+  shape: 'rect',
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
+};
+
+Modern.args = {
+  children: 'Button Modern',
+  fullWidth: false,
+  size: 'medium',
+  color: 'modern',
+  shape: 'rect',
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => alert(e.target),
 };

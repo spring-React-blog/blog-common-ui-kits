@@ -1,25 +1,46 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useCallback, ForwardedRef, useState } from 'react';
+import { ButtonProps } from '../../types/button.types';
+import { StyledButton } from './Button.styled';
 
-interface Props {
-  children: React.ReactNode;
-  size?: 'medium' | 'large';
-}
+const Button = React.forwardRef(
+  (
+    {
+      children,
+      fullWidth = false,
+      color = 'primary',
+      size = 'medium',
+      shape = 'rect',
+      variant = 'contained',
+      onClick,
+      ...rest
+    }: ButtonProps,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
+    const props = { size, shape, color, variant, fullWidth };
+    const [ripple, setRipple] = useState(false);
+    const handleClick = useCallback(
+      (e: React.MouseEvent<HTMLButtonElement>) => {
+        setRipple(true);
 
-const Button = ({ children, size = 'medium' }: Props) => {
-  return <StyledButton size={size}>{children}</StyledButton>;
-};
+        if (onClick) onClick(e);
 
-const StyledButton = styled.button<{ size: 'medium' | 'large' }>`
-  background-color: #fa9696;
-  border: none;
-  ${({ size }) => {
-    if (size === 'medium') {
-      return `padding: 10px 15px`;
-    } else {
-      return `padding: 15px 25px`;
-    }
-  }}
-`;
+        setTimeout(() => {
+          setRipple(false);
+        }, 300);
+      },
+      [onClick]
+    );
+    return (
+      <StyledButton
+        ref={ref}
+        className={ripple ? 'active' : ''}
+        onClick={handleClick}
+        {...props}
+        {...rest}>
+        {children}
+      </StyledButton>
+    );
+  }
+);
 
 export default Button;
