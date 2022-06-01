@@ -1,6 +1,6 @@
 import React, { useCallback, ForwardedRef, useState } from 'react';
 import { ButtonProps } from '../../types/button.types';
-import { StyledButton } from './style';
+import { StyledButton } from './styled';
 
 const Button = React.forwardRef(
   (
